@@ -1,17 +1,19 @@
 package products;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
 public class Recipe {
     private final String name;
-    private ProductCart products;
+    //private ProductCart products;
+    private Set<Product> products = new HashSet<>();
 
-    public Recipe(String name, ProductCart products) {
+    public Recipe(String name, Set<Product> products) {
         if (name == null || name.isEmpty()) {
             throw new ProductException("Укажите наименование рецепта");
         }
-        if (products.getProducts().isEmpty()) {
+        if (products.isEmpty()) {
             throw new ProductException("Укажите список продуктов");
         }
         this.name = name;
@@ -23,7 +25,7 @@ public class Recipe {
     }
 
     public Set<Product> getProducts() {
-        return products.getProducts();
+        return products;
     }
 
     @Override

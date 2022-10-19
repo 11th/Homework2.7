@@ -7,6 +7,9 @@ import products.ProductCart;
 import products.Recipe;
 import products.RecipeBook;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("***");
@@ -24,8 +27,8 @@ public class Main {
             productCart.setBought(apple);
             productCart.remove(banana);
 
-            recipeBook.add(new Recipe("1", productCart));
-            recipeBook.add(new Recipe("2", productCart));
+            recipeBook.add(new Recipe("1", productCart.getProducts()));
+            recipeBook.add(new Recipe("2", productCart.getProducts()));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {
