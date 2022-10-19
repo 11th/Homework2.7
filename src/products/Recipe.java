@@ -6,8 +6,8 @@ import java.util.Set;
 
 public class Recipe {
     private final String name;
-    //private ProductCart products;
     private Set<Product> products = new HashSet<>();
+    private double cost;
 
     public Recipe(String name, Set<Product> products) {
         if (name == null || name.isEmpty()) {
@@ -28,6 +28,14 @@ public class Recipe {
         return products;
     }
 
+    public double getCost() {
+        double cost = 0.0;
+        for (Product product : products) {
+            cost += product.getCost();
+        }
+        return cost;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -43,6 +51,6 @@ public class Recipe {
 
     @Override
     public String toString() {
-        return "\nРецепт " + name + "\n" + products;
+        return "\nРецепт " + name + " (Стоимость " + + getCost() + " руб.)" + "\n" + products;
     }
 }
