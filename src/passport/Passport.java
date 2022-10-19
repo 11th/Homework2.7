@@ -14,21 +14,27 @@ public class Passport {
     }
 
     public Passport(int number, String surname, String name, String patronymic, String birthday) {
-        if (number <= 0 || name == null || surname == null || birthday == null) {
-            throw new RuntimeException("Укажите номер паспорта, фамилию, имя и дату рождения владельца");
+        if (number <= 0 || birthday == null) {
+            throw new RuntimeException("Укажите номер паспорта и дату рождения владельца");
         }
         this.number = number;
-        this.name = name;
-        this.patronymic = patronymic;
-        this.surname = surname;
         this.birthday = birthday;
+        setName(name);
+        setSurname(surname);
+        setPatronymic(patronymic);
     }
 
     public void setSurname(String surname) {
+        if (surname == null) {
+            throw new RuntimeException("Укажите фамилию владельца");
+        }
         this.surname = surname;
     }
 
     public void setName(String name) {
+        if (name == null) {
+            throw new RuntimeException("Укажите имя владельца");
+        }
         this.name = name;
     }
 

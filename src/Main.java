@@ -7,8 +7,6 @@ import products.ProductCart;
 import products.Recipe;
 import products.RecipeBook;
 
-import java.util.*;
-
 public class Main {
     public static void main(String[] args) {
         System.out.println("***");
@@ -23,7 +21,7 @@ public class Main {
             productCart.add(tomato);
             productCart.add(banana);
 
-            productCart.isBought(apple);
+            productCart.setBought(apple);
             productCart.remove(banana);
 
             recipeBook.add(new Recipe("1", productCart));

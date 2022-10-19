@@ -22,7 +22,7 @@ public class ProductCart {
         }
     }
 
-    public void isBought(Product product) {
+    public void setBought(Product product) {
         product.setBought(true);
     }
 
