@@ -5,16 +5,15 @@ import java.util.Objects;
 public class Product {
     private final String name;
     private final double cost;
-    private final double amount;
+    //private final double amount;
     private boolean isBought;
 
-    public Product(String name, double cost, double amount) {
-        if (name == null || name.isEmpty() || cost <= 0 || amount <= 0){
+    public Product(String name, double cost) {
+        if (name == null || name.isEmpty() || cost <= 0){
             throw new ProductException("Заполните карточку товара полностью");
         }
         this.name = name;
         this.cost = cost;
-        this.amount = amount;
     }
 
     public void setBought(boolean bought) {
@@ -31,10 +30,6 @@ public class Product {
 
     public double getCost() {
         return cost;
-    }
-
-    public double getAmount() {
-        return amount;
     }
 
     @Override
@@ -58,6 +53,6 @@ public class Product {
         } else {
             bought = "еще не куплен";
         }
-        return String.format("\n%s, стоимость %s, %s кг, %s", name, cost, amount, bought);
+        return String.format("\n%s, стоимость %s, %s", name, cost, bought);
     }
 }
