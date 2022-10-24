@@ -1,37 +1,44 @@
 package products;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 public class Recipe {
     private final String name;
-    private Set<Product> products = new HashSet<>();
+    private Map<Product, Double> products = new HashMap<>();
     private double cost;
 
-    public Recipe(String name, Set<Product> products) {
+    public Recipe(String name) {
         if (name == null || name.isEmpty()) {
             throw new ProductException("Укажите наименование рецепта");
         }
-        if (products.isEmpty()) {
-            throw new ProductException("Укажите список продуктов");
-        }
         this.name = name;
-        this.products = products;
+    }
+
+    public void addProduct(Product product, double amount) {
+        if (product == null){
+            throw new RuntimeException("Укажите продукт");
+        }
+        if (amount < 0){
+            throw new RuntimeException("Количество не может быть отрицательным");
+        } else if (amount == 0) {
+            products.put(product, 1.0);
+        } else {
+            products.put(product, amount);
+        }
     }
 
     public String getName() {
         return name;
     }
 
-    public Set<Product> getProducts() {
+    public Map<Product, Double> getProducts() {
         return products;
     }
 
     public double getCost() {
         double cost = 0.0;
-        for (Product product : products) {
-            cost += product.getCost();
+        for (Map.Entry<Product, Double> entry : products.entrySet()) {
+            cost += entry.getKey().getCost() * entry.getValue();
         }
         return cost;
     }
@@ -51,6 +58,11 @@ public class Recipe {
 
     @Override
     public String toString() {
-        return "\nРецепт " + name + " (Стоимость " + + getCost() + " руб.)" + "\n" + products;
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("\nРецепт " + name + " (Стоимость " + getCost() + " руб.)" + "\n" + "Продукты:");
+        for (Product product : products.keySet()) {
+            stringBuilder.append(product);
+        }
+        return stringBuilder.toString(); //"\nРецепт " + name + " (Стоимость " + getCost() + " руб.)" + "\n" + products;
     }
 }
